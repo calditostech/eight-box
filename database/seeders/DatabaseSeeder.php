@@ -13,11 +13,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-
+        /*
         \App\Models\User::factory()->create([
              'name' => 'Admin',
              'email' => 'admin@test.com.br',
              'password' => 'admin123'
+        ]);
+        */
+        $this->call([
+            BebidasSeeder::class,
         ]);
     }
 }

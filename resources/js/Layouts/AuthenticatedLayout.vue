@@ -21,21 +21,19 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-green-800"
-                                    />
+                                <ApplicationLogo class="block h-9 w-auto fill-current text-green-800" />
                                 </Link>
                             </div>
-
+    
                         </div>
-
+    
                         <div class="menu-wrapper">
                             <!-- Settings Dropdown -->
                             <div class="ml-1 relative">
                                 <div class="p-6 text-white-900">Menu</div>
                                 <DropdownLink :href="route('profile.edit')"> Bazar </DropdownLink>
                                 <hr>
-                                <DropdownLink :href="route('profile.edit')"> Bebidas </DropdownLink>
+                                <DropdownLink :href="route('bebidas.index')"> Bebidas </DropdownLink>
                                 <hr>
                                 <DropdownLink :href="route('profile.edit')"> Mercearia </DropdownLink>
                                 <hr>
@@ -43,41 +41,41 @@ const showingNavigationDropdown = ref(false);
                                 <hr>
                             </div>
                         </div>
-
+    
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-green hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                                {{ $page.props.auth.user.name }}
-
-                                                <svg
-                                                    class="ml-2 -mr-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
+                                            <span class="inline-flex rounded-md">
+                                                <button
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-green hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                                 >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </template>
+                                                    {{ $page.props.auth.user.name }}
+    
+                                                    <svg
+                                                        class="ml-2 -mr-0.5 h-4 w-4"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fill-rule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </span>
+</template>
 
-                                    <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
-                                        </DropdownLink>
-                                    </template>
+<template #content>
+    <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
+    <DropdownLink :href="route('logout')" method="post" as="button">
+        Log Out
+    </DropdownLink>
+</template>
                                 </Dropdown>
                             </div>
                         </div>
@@ -167,10 +165,14 @@ const showingNavigationDropdown = ref(false);
     color: white;
     top: 0;
     left: 0;
-    width: 200px; /* ou qualquer outra largura desejada */
+    width: 200px;
+    /* ou qualquer outra largura desejada */
     height: 100%;
-    background-color: #90EE90; /* ou qualquer outra cor desejada */
-    z-index: 9999; /* para garantir que o menu fique sobreposto a outros elementos */
-    overflow-y: auto; /* para permitir a rolagem do menu caso ele seja mais alto que a tela */
+    background-color: #90EE90;
+    /* ou qualquer outra cor desejada */
+    z-index: 9999;
+    /* para garantir que o menu fique sobreposto a outros elementos */
+    overflow-y: auto;
+    /* para permitir a rolagem do menu caso ele seja mais alto que a tela */
 }
 </style>
