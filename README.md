@@ -1,6 +1,6 @@
 ## tela apresentação
 
-<img src="tela-apresentação.png" alt="apresentation" />
+<img src="tela-apresentacao.png" alt="apresentation" />
 
 ## tela login
 
