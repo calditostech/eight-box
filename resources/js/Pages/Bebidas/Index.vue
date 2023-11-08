@@ -1,5 +1,5 @@
 <template>
-  <Head title="Bebidas" />
+  <Head title="Bebidas"/>
   <AuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">Bebidas</h2>
@@ -7,6 +7,7 @@
     <div class="py-12">
       <table class="w-3/4 divide-y divide-gray-200 mx-auto">
         <thead class="bg-gray-50">
+          <button @click="abrirFormularioAdicao" class="bg-blue-50 text-blue-400 hover:text-indigo-900">Adicionar Bebida</button>
           <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Marca</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
@@ -20,7 +21,7 @@
             <td class="px-6 py-4 whitespace-nowrap">{{ bebida.tipo }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ bebida.preco }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-              <button @click="editarBebida(bebida)" class="text-indigo-600 hover:text-indigo-900">Editar</button>
+              <button @click="editarBebida(bebida)" class="text-green-600 hover:text-indigo-900">Editar</button>
               <button @click="excluirBebida(bebida)" class="text-red-600 hover:text-red-900 ml-4">Excluir</button>
             </td>
           </tr>            
@@ -58,6 +59,8 @@
 import { defineProps, ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { reactive } from 'vue';
+import { router } from '@inertiajs/vue3'
 
 const props = defineProps({
   bebidas: {
@@ -72,14 +75,16 @@ const fecharModal = () => {
   bebidaSelecionada.value = null;
 };
 
-// Função para editar uma bebida
+function abrirFormularioAdicao(){
+  router.get('bebidas/create')
+};
+
 const editarBebida = (bebida) => {
   bebidaSelecionada.value = bebida;
 };
 
-// Função para excluir uma bebida
 const excluirBebida = (bebida) => {
-  console.log('Excluir bebida:', bebida);
+  bebidaSelecionada.value = bebida;
 };
 </script>
 

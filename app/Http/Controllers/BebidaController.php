@@ -39,7 +39,7 @@ class BebidaController extends Controller
     {
         $data = $request->all();
         $bebida = $this->bebidaRepository->create($data);
-        return redirect()->route('bebidas.show', $bebida->id);
+        return redirect()->route('bebidas.index', $bebida->id);
     }
 
     public function show($id)
@@ -66,7 +66,7 @@ class BebidaController extends Controller
 
         $bebida = $this->bebidaRepository->update($data, $id);
 
-        return redirect()->route('bebidas.show', $bebida->id);
+        return redirect()->route('bebidas.index', $bebida->id);
     }
 
     public function destroy($id)
