@@ -22,7 +22,7 @@ defineProps({
 
 <template>
     <Head title="Welcome" />
-
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-green-100 dark:bg-dots-lighter dark:bg-green-900 selection:bg-red-500 selection:text-white"
     >
