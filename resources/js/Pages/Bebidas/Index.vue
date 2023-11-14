@@ -7,7 +7,12 @@
     <div class="py-12">
       <table class="w-3/4 divide-y divide-gray-200 mx-auto">
         <thead class="bg-gray-50">
-          <button @click="abrirFormularioAdicao" class="bg-blue-50 text-blue-400 hover:text-indigo-900">Adicionar Bebida</button>
+          <button @click="abrirFormularioAdicao" class="bg-green-500 text-white px-4 py-2 rounded flex items-center">
+          <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          Adicionar Bebida
+        </button>
           <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Marca</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
@@ -67,6 +72,7 @@ const props = defineProps({
     type: Array,
     required: true
   },
+  bebida: ''
 });
 
 const bebidaSelecionada = ref(null);
@@ -83,8 +89,8 @@ const editarBebida = (bebida) => {
   bebidaSelecionada.value = bebida;
 };
 
-const excluirBebida = (bebida) => {
-  bebidaSelecionada.value = bebida;
+function excluirBebida(bebida){
+   router.delete(`bebidas/${bebida.id}`)
 };
 </script>
 
