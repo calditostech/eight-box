@@ -26,17 +26,7 @@ services:
             - redis
             - meilisearch
             - mailpit
-            - selenium
-        type: web
-        name: app-backend
-        branch: main
-        runtime: go
-        rootDir: backend
-        buildCommand: go build -o app .
-        startCommand: ./app
-        buildFilter:
-            paths:
-            - community/docker/**   
+            - selenium  
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
