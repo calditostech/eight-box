@@ -4,6 +4,29 @@
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">Bebidas</h2>
     </template>
+    <div class="mt-4 mx-auto w-1/2">
+      <form @submit.prevent="filtrarBebidas" method="post" class="w-1/4">
+        <div class="flex space-x-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Marca</label>
+            <input v-model="filtros.marca" type="text" class="mt-1 p-2 border rounded-md">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Tipo</label>
+            <input v-model="filtros.tipo" type="text" class="mt-1 p-2 border rounded-md">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Preço</label>
+            <input v-model="filtros.preco" type="text" class="mt-1 p-2 border rounded-md">
+          </div>
+          <div>
+            <button type="submit" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded">
+              Filtrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
     <div class="py-12">
       <table class="w-3/4 divide-y divide-gray-200 mx-auto">
         <thead class="bg-gray-50">
@@ -61,6 +84,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { defineProps, ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -72,8 +96,41 @@ const props = defineProps({
     type: Array,
     required: true
   },
-  bebida: ''
+  bebida: String,
+  filtros: {
+    type: Object,
+    required: true,
+    default: () => ({ marca: '', tipo: '', preco: '' }),
+  },
 });
+
+import Swal from 'sweetalert2';
+
+function filtrarBebidas() {
+  axios.post('bebidas/filters', props.filtros)
+    .then(response => {
+      // lógica após a resposta bem-sucedida
+      Swal.fire({
+        icon: 'success',
+        title: 'Filtrado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500, // Tempo em milissegundos para manter o alerta aberto
+      });
+
+      // Pode ser necessário recarregar os dados após o filtro
+      // Você pode fazer isso chamando uma função para recarregar os dados da lista, por exemplo.
+      // Exemplo: this.carregarBebidas();
+    })
+    .catch(error => {
+      // lógica para lidar com erros
+      console.error('Erro ao filtrar bebidas:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao filtrar bebidas',
+        text: 'Por favor, tente novamente.',
+      });
+    });
+}
 
 const bebidaSelecionada = ref(null);
 

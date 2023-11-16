@@ -30,6 +30,7 @@ import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Swal from 'sweetalert2';
 
 const form = reactive({
   marca: null,
@@ -38,7 +39,23 @@ const form = reactive({
 })
 
 function submit() {
-  router.post('/bebidas', form)
+  axios.post('/bebidas', form)
+  .then(response => {
+    Swal.fire({
+      icon: 'success',
+      title: 'Bebida cadastrada com sucesso!',
+      showConfirmButton: false,
+      timer: 1500, // Tempo em milissegundos para manter o alerta aberto
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao cadastrar bebibas bebidas:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Erro ao cadastrar bebidas',
+      text: 'Por favor, tente novamente.',
+    });
+  });
 }
 
 function cancelSubmit() {

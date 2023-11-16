@@ -38,4 +38,9 @@ abstract class BaseRepository
     {
         return $this->model->destroy($id);
     }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
 }

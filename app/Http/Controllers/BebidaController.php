@@ -20,6 +20,31 @@ class BebidaController extends Controller
         $bebidas = $this->bebidaRepository->all();
         return Inertia::render('Bebidas/Index', ['bebidas' => $bebidas]);
     }
+
+    public function filters(Request $request)
+    {
+        $tipo = $request->tipo;
+        $marca = $request->marca;
+        $preco = $request->preco;
+
+        $query = $this->bebidaRepository->getModel();
+        
+        if ($tipo) {
+            $query->where('tipo', 'like', "%$tipo%");
+        }
+    
+        if ($marca) {
+            $query->where('marca', 'like', "%$marca%");
+        }
+    
+        if ($preco) {
+            $query->where('preco', 'like', "%$preco%");
+        }
+    
+        $bebidas = $query->get();
+
+        return Inertia::render('Bebidas/Index', ['bebidas' => $bebidas]);
+    }
    
     public function create(Request $request)
     {

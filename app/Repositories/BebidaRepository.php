@@ -11,8 +11,22 @@ class BebidaRepository extends BaseRepository
         parent::__construct($bebida);
     }
 
-    public function buscarPorNome($nome)
+    public function filters($tipo, $marca, $preco)
     {
-        return $this->model->where('nome', 'like', '%'.$nome.'%')->get();
+        $query = $this->model->query();
+
+        if ($tipo) {
+            $query->where('tipo', 'like', "%$tipo%");
+        }
+
+        if ($marca) {
+            $query->where('marca', 'like', "%$marca%");
+        }
+
+        if ($preco) {
+            $query->where('preco', 'like', "%$preco%");
+        }
+
+        return $query->get();
     }
 }
