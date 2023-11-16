@@ -1,6 +1,27 @@
-docker run -v .:/var/www/html --add-host host.docker.internal:host-gateway --network sail -p ${APP_PORT:-80}:80 -p ${VITE_PORT:-5173}:${VITE_PORT:-5173} -e WWWUSER=${WWWUSER} -e LARAVEL_SAIL=1 -e XDEBUG_MODE=${SAIL_XDEBUG_MODE:-off} -e XDEBUG_CONFIG=${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal} sail-8.2/app 
-docker run -v sail-mysql:/var/lib/mysql -v ./vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh --network sail --health-interval 1m30s --health-retries 1m30s --health-cmd CMD --health-cmd mysqladmin --health-cmd ping --health-cmd -p${DB_PASSWORD} -p ${FORWARD_DB_PORT:-3306}:3306 -e MYSQL_ROOT_PASSWORD=${DB_PASSWORD} -e MYSQL_ROOT_HOST=% -e MYSQL_DATABASE=${DB_DATABASE} -e MYSQL_USER=${DB_USERNAME} -e MYSQL_PASSWORD=${DB_PASSWORD} -e MYSQL_ALLOW_EMPTY_PASSWORD=1 mysql/mysql-server:8.0 
-docker run -v sail-redis:/data --network sail --health-interval 1m30s --health-retries 1m30s --health-cmd CMD --health-cmd redis-cli --health-cmd ping -p ${FORWARD_REDIS_PORT:-6380}:6380 redis:alpine 
-docker run -v sail-meilisearch:/meili_data --network sail --health-interval 1m30s --health-retries 1m30s --health-cmd CMD --health-cmd wget --health-cmd --no-verbose --health-cmd --spider --health-cmd http://localhost:7700/health -p ${FORWARD_MEILISEARCH_PORT:-7701}:7701 getmeili/meilisearch:latest 
-docker run --network sail -p ${FORWARD_MAILPIT_PORT:-1026}:1026 -p ${FORWARD_MAILPIT_DASHBOARD_PORT:-8026}:8026 axllent/mailpit:latest 
-docker run -v /dev/shm:/dev/shm --add-host host.docker.internal:host-gateway --network sail selenium/standalone-chrome 
+FROM php:7.4-fpm
+
+ARG user
+ARG uid
+
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
+WORKDIR /var/www/html
+
+USER $user
