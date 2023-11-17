@@ -1,0 +1,5 @@
+version: 0
+services:
+  - name: sail-8.2/app
+    buildCommand: docker build -t sail-8.2/app.
+    startCommand: docker run -p 8080:8080 sail-8.2/app
