@@ -62,7 +62,7 @@ RUN php artisan key:generate
 FROM composer_stage AS final_stage
 
 # Copie os arquivos do seu projeto
-COPY .env /var/www/html
+COPY . /var/www/html
 
 # Exponha a porta necessária
 EXPOSE 8080
