@@ -53,6 +53,9 @@ FROM npm_stage AS composer_stage
 # Adicione os comandos do Composer
 RUN composer install --optimize-autoloader --no-dev --verbose || true
 
+# Gere a chave de aplicação Laravel
+RUN php artisan key:generate
+
 # Restante do Dockerfile
 
 # Etapa final
@@ -60,9 +63,6 @@ FROM composer_stage AS final_stage
 
 # Copie os arquivos do seu projeto
 COPY . .
-
-# Gere a chave de aplicação Laravel
-RUN php artisan key:generate
 
 # Exponha a porta necessária
 EXPOSE 8080
