@@ -53,9 +53,6 @@ FROM npm_stage AS composer_stage
 # Adicione os comandos do Composer
 RUN composer install --optimize-autoloader --no-dev --verbose || true
 
-# Gere a chave de aplicação Laravel
-RUN php artisan key:generate
-
 # Restante do Dockerfile
 
 # Etapa final
