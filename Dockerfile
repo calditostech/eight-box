@@ -53,6 +53,9 @@ FROM npm_stage AS composer_stage
 # Adicione os comandos do Composer
 RUN composer install --optimize-autoloader --no-dev --verbose || true
 
+# Adicione o caminho do Docker Compose ao PATH
+ENV PATH="/path/to/docker-compose:${PATH}"
+
 # Restante do Dockerfile
 
 # Etapa final
