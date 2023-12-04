@@ -4,10 +4,10 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-green-100">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-blue-100">
         <div>
             <Link href="/">
-                <ApplicationLogo class="w-20 h-20 fill-current text-green-500" />
+                <ApplicationLogo class="w-20 h-20 fill-current text-blue-500" />
             </Link>
         </div>
 

@@ -1,4 +1,4 @@
 <template>
-    <img src="img/eight-box-logo.png" alt="logo" />
+    <img src="img/new-eight-box.png" alt="logo" />
 </template>
 

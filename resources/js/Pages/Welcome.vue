@@ -51,7 +51,7 @@ defineProps({
         </div>
 
         <div class="max-w-7xl mx-auto p-6 lg:p-6">
-            <img src="img/eight-box-logo.png" alt="logo" />
+            <img src="img/new-eight-box.png" alt="logo" />
         </div>
     </div>
     <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">

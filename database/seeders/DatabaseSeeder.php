@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         /*
         \App\Models\User::factory()->create([
-             'name' => 'Admin',
-             'email' => 'admin@test.com.br',
-             'password' => 'admin123'
+             'name' => 'Ricardo Ferreira Moreira'
+             'email' => 'ricardo@teste.com.br,
+             'password' => 'ricardoteste'
         ]);
+
         */
         $this->call([
             BebidasSeeder::class,

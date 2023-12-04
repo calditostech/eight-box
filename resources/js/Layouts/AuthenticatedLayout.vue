@@ -12,7 +12,7 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-green-100">
+        <div class="min-h-screen bg-blue-100">
             <nav class="bg-white border-b border-red-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,23 +21,44 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                <ApplicationLogo class="block h-9 w-auto fill-current text-green-800" />
+                                <ApplicationLogo class="block h-9 w-auto fill-current text-blue-800" />
                                 </Link>
                             </div>
     
                         </div>
     
-                        <div class="menu-wrapper">
+                        <div class="menu-wrapper" style="width: 250px;">
                             <!-- Settings Dropdown -->
                             <div class="ml-1 relative">
                                 <div class="p-6 text-white-900">Menu</div>
-                                <DropdownLink :href="route('profile.edit')"> Bazar </DropdownLink>
+                                <DropdownLink :href="route('bebidas.index')"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                </svg>
+                                Entrada de Produtos </DropdownLink>
                                 <hr>
-                                <DropdownLink :href="route('bebidas.index')"> Bebidas </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                                </svg>
+                                Saida de Produtos</DropdownLink>
                                 <hr>
-                                <DropdownLink :href="route('profile.edit')"> Mercearia </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
+                                </svg>
+                                Inventario</DropdownLink>              
                                 <hr>
-                                <DropdownLink :href="route('profile.edit')"> Periciveis </DropdownLink>
+                                <DropdownLink :href="route('profile.edit')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                </svg>
+                                Relatorios Entrada/Saida</DropdownLink>
+                                <hr>
+                                <DropdownLink :href="route('profile.edit')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
+                                </svg>
+                                Produtos na Validade</DropdownLink>
                                 <hr>
                             </div>
                         </div>
@@ -48,6 +69,9 @@ const showingNavigationDropdown = ref(false);
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                             <span class="inline-flex rounded-md">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                                </svg>
                                                 <button
                                                     type="button"
                                                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-green hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
@@ -168,7 +192,7 @@ const showingNavigationDropdown = ref(false);
     width: 200px;
     /* ou qualquer outra largura desejada */
     height: 100%;
-    background-color: #90EE90;
+    background-color: #7B68EE;
     /* ou qualquer outra cor desejada */
     z-index: 9999;
     /* para garantir que o menu fique sobreposto a outros elementos */
