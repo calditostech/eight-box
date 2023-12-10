@@ -27,11 +27,11 @@ const showingNavigationDropdown = ref(false);
     
                         </div>
     
-                        <div class="menu-wrapper" style="width: 250px;">
+                        <div class="menu-wrapper" style="width: 200px;">
                             <!-- Settings Dropdown -->
                             <div class="ml-1 relative">
                                 <div class="p-6 text-white-900">Menu</div>
-                                <DropdownLink :href="route('bebidas.index')"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <DropdownLink :href="route('appetizer.index')"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                                 </svg>
                                 Entrada de Produtos </DropdownLink>

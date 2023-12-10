@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\BebidaController;
+use App\Http\Controllers\AppetizerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,8 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('bebidas', BebidaController::class);
-    Route::post('bebidas/filters', [BebidaController::class, 'filters'])->name('bebidas.filters');
+    Route::patch('/appetizer/{appetizer}', [AppetizerController::class, 'update'])->name('appetizer.update');
+    Route::resource('appetizer', AppetizerController::class);
+    Route::post('appetizer/filters', [AppetizerController::class, 'filters'])->name('appetizer.filters');
 });
 
 require __DIR__.'/auth.php';

@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bebida extends Model
+class Appetizer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['marca', 'tipo', 'preco'];
+    protected $fillable = ['marca', 'tipo', 'quantidade', 'data_entrada_produto'];
 
-    protected $table = 'bebidas';
-
-    protected $casts = [
-        'preco' => 'float',
-    ];
+    protected $table = 'appetizer';
 
     protected $dates = [
         'created_at',
