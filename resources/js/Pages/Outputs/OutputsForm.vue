@@ -13,9 +13,9 @@
         <input v-model="form.quantidade" type="number" class="form-control" required>
       </div>
       <div class="mt-4 mx-auto col-md-6">
-        <label class="form-label">Data e Hora de Entrada de Produtos</label>
+        <label class="form-label">Data e Hora de Saída de Produtos</label>
         <div class="input-group">
-          <input v-model="form.data_entrada_produto" type="datetime-local" class="form-control" required>
+          <input v-model="form.data_saida_produto" type="datetime" class="form-control" required>
         </div>
       </div>
       <div class="mt-4 mx-auto col-md-6">
@@ -34,15 +34,15 @@
   const props = defineProps(['isEditing', 'initialData']);
   
   const form = ref({
-    id: props.isEditing ? props.initialData.id : null,
-    marca: props.isEditing ? props.initialData.marca : '',
-    tipo: props.isEditing ? props.initialData.tipo : '',
-    quantidade: props.isEditing ? props.initialData.quantidade : 0,
-    data_entrada_produto: props.isEditing ? props.initialData.data_entrada_produto : '',
+    id: props.isEditing && props.initialData ? props.initialData.id : null,
+    marca: props.isEditing && props.initialData ? props.initialData.marca : '',
+    tipo: props.isEditing && props.initialData ? props.initialData.tipo : '',
+    quantidade: props.isEditing && props.initialData ? props.initialData.quantidade : 0,
+    data_saida_produto: props.isEditing && props.initialData ? props.initialData.data_saida_produto : '',
   });
-  
+
   const submit = () => {
-  const url = props.isEditing ? `/appetizer/${form.value.id}` : '/appetizer';
+  const url = props.isEditing ? `/outputs/${form.value.id}` : '/outputs';
 
   axios[props.isEditing ? 'put' : 'post'](url, form.value)
     .then(response => {
@@ -54,32 +54,31 @@
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
-        router.get('/appetizer');
+        router.get('/outputs');
       });
     })
     .catch(error => {
-      console.error(`Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de entrada:`, error);
+      console.error(`Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de saída:`, error);
 
       if (error.response && error.response.status === 405) {
-        // Ignore HTTP 405 error and show success message
         Swal.fire({
           icon: 'success',
           title: 'Produto atualizado com sucesso!',
           showConfirmButton: false,
           timer: 1500,
         }).then(() => {
-          router.get('/appetizer');
+          router.get('/outputs');
         });
       } else if (error.response && error.response.status === 500) {
         Swal.fire({
           icon: 'error',
-          title: `Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de entrada`,
+          title: `Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de saída`,
           text: 'Ocorreu um erro interno no servidor. Por favor, tente novamente mais tarde.',
         });
       } else {
         Swal.fire({
           icon: 'error',
-          title: `Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de entrada`,
+          title: `Erro ao ${props.isEditing ? 'atualizar' : 'cadastrar'} produto de saída`,
           text: 'Por favor, tente novamente.',
         });
       }
@@ -87,7 +86,7 @@
   };
   
   const cancelSubmit = () => {
-    router.get('/appetizer');
+    router.get('/outputs');
   };
 </script>
   

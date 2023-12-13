@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppetizerController;
+use App\Http\Controllers\OutputsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/appetizer/{appetizer}', [AppetizerController::class, 'update'])->name('appetizer.update');
     Route::resource('appetizer', AppetizerController::class);
     Route::post('appetizer/filters', [AppetizerController::class, 'filters'])->name('appetizer.filters');
+    Route::resource('outputs', OutputsController::class);
+    Route::post('outputs/filters', [OutputsController::class, 'filters'])->name('outputs.filters');
 });
 
 require __DIR__.'/auth.php';

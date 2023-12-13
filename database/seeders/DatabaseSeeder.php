@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Appetizer;
+use App\Models\Outputs;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,8 +23,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         */
+        /*
         $this->call([
             AppetizerSeeder::class,
+        ]);
+        */
+        $this->call([
+            OutputsSeeder::class,
         ]);
     }
 }
