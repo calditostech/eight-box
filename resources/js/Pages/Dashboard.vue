@@ -12,6 +12,6 @@ import { Head } from '@inertiajs/vue3';
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>
         </template>
       
-        <GraphicChart />
+        <GraphicChart :appetizer="appetizer" :outputs="outputs" @update:appetizer="appetizer = $event" @update:outputs="outputs = $event"/>
       </AuthenticatedLayout>      
 </template>
