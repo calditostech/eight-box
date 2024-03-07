@@ -2,10 +2,10 @@
     <Head title="Outputs"/>
     <AuthenticatedLayout>
       <template #header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Saída de Produtos</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight ml-56">Saída de Produtos</h2>
       </template>
       <div class="py-12">
-        <table class="w-3/4 divide-y divide-gray-200 mx-auto">
+        <table class="w-3/3 divide-y divide-gray-200 mx-auto">
           <thead class="bg-gray-50">
             <button @click="abrirFormularioAdicao" class="bg-green-500 text-white px-4 py-2 rounded flex items-center">
             <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

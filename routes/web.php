@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppetizerController;
 use App\Http\Controllers\OutputsController;
 use App\Http\Controllers\GraphicController;
+use App\Http\Controllers\Relatorios\RelatorioAppetizersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,5 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('outputs', OutputsController::class);
     Route::post('outputs/filters', [OutputsController::class, 'filters'])->name('outputs.filters');
 });
+
+Route::post('appetizers/view-pdf', [RelatorioAppetizersController::class, 'viewPDF'])->name('view-pdf');
+Route::get('appetizers/download-pdf', [RelatorioAppetizersController::class, 'downloadPDF'])->name('download-pdf');
 
 require __DIR__.'/auth.php';
